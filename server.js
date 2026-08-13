@@ -11,31 +11,12 @@ const inquiryRoutes = require("./routes/inquiryRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const propertyImageRoutes = require("./routes/propertyImageRoutes");
 
-const allowedOrigins = [
-  'http://localhost:3000',
-  'http://localhost:3001',
-  'http://localhost:3002',
-  'http://127.0.0.1:3002',
-  'https://trinity-housing-userend-obh8.vercel.app' 
-];
-
-// 2. CORS Middleware Configure
+// 2. CORS Middleware Configure (Routes se pehle lagana zaroori hai)
 app.use(cors({
-    origin: function (origin, callback) {
-      // Postman / server-to-server requests allow karne ke liye (!origin)
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Blocked by CORS policy'));
-      }
-    },
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    origin: ['http://localhost:3002', 'http://127.0.0.1:3002', 'http://localhost:3001', 'https://trinity-housing-userend-obh8.vercel.app'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     credentials: true
 }));
-
-// Preflight OPTIONS handling
-app.options('*', cors());
 
 app.use(express.json());
 app.use(cookieParser());
@@ -50,5 +31,5 @@ app.use("/api/properties", propertyImageRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+    console.log(`Server running on http://localhost:${port}`);
 });
