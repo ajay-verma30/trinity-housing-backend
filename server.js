@@ -13,7 +13,7 @@ const propertyImageRoutes = require("./routes/propertyImageRoutes");
 
 // 2. CORS Middleware Configure (Routes se pehle lagana zaroori hai)
 app.use(cors({
-    origin: ['http://localhost:3002', 'http://127.0.0.1:3002', 'http://localhost:3001', 'https://trinity-housing-userend-obh8.vercel.app'],
+    origin: ['http://localhost:3002', 'http://127.0.0.1:3002', 'http://localhost:3001', 'https://trinity-housing-userend-obh8.vercel.app','https://trinity-housing-admin.vercel.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     credentials: true
 }));
